@@ -1,0 +1,347 @@
+WEBVTT
+
+00:00.000 --> 00:06.000
+Hello everyone, my name is Jesse Peterson and this is my CS470 Project 2 conference presentation.
+
+00:06.000 --> 00:12.000
+So getting on with it, we have our agenda here is going to be talking about containerization orchestration,
+
+00:12.000 --> 00:18.000
+the serverless cloud, cloud-based development principles in securing your cloud application.
+
+00:18.000 --> 00:22.000
+So first, containerization and orchestration, the models we used.
+
+00:22.000 --> 00:28.000
+So we used the re-platforming model where we integrated Lambda functions, DynamoDB, and the API gateway.
+
+00:28.000 --> 00:35.000
+So on the other hand, there's lift and shift, which is where you will package a container in a Docker container
+
+00:35.000 --> 00:42.000
+and you will lift it into the cloud. This is usually done on legacy applications where refactoring is useless.
+
+00:42.000 --> 00:49.000
+So re-platforming is where you slightly modify in order to take advantage of cloud managed services,
+
+00:49.000 --> 00:54.000
+for example, like our MongoDB and DynamoDB database.
+
+00:54.000 --> 00:59.000
+And refactoring is a much more extensive approach where the application is redesigned.
+
+00:59.000 --> 01:09.000
+This is usually to adopt the microservice architecture where the entire thing is broken down to take full utilization of the cloud.
+
+01:09.000 --> 01:14.000
+So the tools used, we used two different tools here. We used Docker and Docker Compose.
+
+01:14.000 --> 01:21.000
+Docker helps to package applications with their dependencies and containers.
+
+01:21.000 --> 01:27.000
+One key feature is Docker's ability to build, ship, and run applications in isolated environments.
+
+01:27.000 --> 01:32.000
+This allows us to keep our dependencies from interacting with the host machine's dependencies,
+
+01:32.000 --> 01:36.000
+getting rid of the it works on my machine, but it doesn't work on yours issue.
+
+01:36.000 --> 01:39.000
+So we also use Docker Compose, which is a Docker tool.
+
+01:39.000 --> 01:44.000
+It allows us to manage multi-container Docker applications.
+
+01:44.000 --> 01:48.000
+This is all done through a single Docker Compose file.
+
+01:48.000 --> 01:50.000
+So why should we use Docker Compose?
+
+01:50.000 --> 01:56.000
+Well, it simplifies the multi-container applications via a single YAML file.
+
+01:59.000 --> 02:04.000
+It's also nice for testing applications that use multiple services.
+
+02:04.000 --> 02:09.000
+Like in our case, we use MongoDB to communicate with ours.
+
+02:09.000 --> 02:13.000
+And it's also very portable and reproducible.
+
+02:13.000 --> 02:20.000
+You can upload your Compose file to a GitHub repo so your other developers can pull it.
+
+02:20.000 --> 02:26.000
+And it also runs on Windows, Mac OS, and Linux platforms so you can develop across any platform you prefer.
+
+02:26.000 --> 02:28.000
+So what's the serverless cloud?
+
+02:28.000 --> 02:35.000
+So the serverless cloud allows, has the advantage of allowing developers to write and deploy code
+
+02:35.000 --> 02:38.000
+without worrying about managing their underlying infrastructure.
+
+02:38.000 --> 02:42.000
+Developers, this also creates faster development life cycles.
+
+02:42.000 --> 02:47.000
+This is mostly due to the elimination of the need for infrastructure setup.
+
+02:47.000 --> 02:51.000
+Serverless applications dynamically scale up and down depending on demand.
+
+02:51.000 --> 02:59.000
+And they reduce operational overhead since there is no need to manage or maintain physical service operating systems or containers, clusters.
+
+02:59.000 --> 03:02.000
+So what is S3 storage then?
+
+03:02.000 --> 03:14.000
+So S3 storage, or a simplified storage service, is a cloud-based object storage service that is designed for scalability, durability, and accessibility.
+
+03:14.000 --> 03:19.000
+S3 is a managed service where AWS handles infrastructure and everything.
+
+03:19.000 --> 03:27.000
+With a significant amount of AWS data centers, this allows your data to be replicated to other regions, making it highly available and accessible.
+
+03:27.000 --> 03:35.000
+On the other hand, local storage is limited to physical hardware, whereas cloud storage is not limited unless it's the price of the storage.
+
+03:35.000 --> 03:40.000
+Finally, as mentioned earlier, local storage has no built-in remote accessibility.
+
+03:40.000 --> 03:45.000
+Having an engineer come in to open your network up can lead to some vulnerabilities.
+
+03:45.000 --> 03:48.000
+This is an example of what serverless looks like.
+
+03:48.000 --> 03:51.000
+A user would connect to the API.
+
+03:51.000 --> 03:53.000
+The API would route to a Lambda function.
+
+03:53.000 --> 03:59.000
+The Lambda function would grab the data that it needs from the database, and then it would bring it back to the user.
+
+03:59.000 --> 04:06.000
+This would scale up and down through this elastic hash model, depending on how many people are accessing the data.
+
+04:06.000 --> 04:09.000
+So going on to the serverless API.
+
+04:09.000 --> 04:14.000
+When using a serverless API, there is no server management required.
+
+04:14.000 --> 04:21.000
+This enables developers to focus on writing and deploying an application without worrying about configuration of the network.
+
+04:21.000 --> 04:31.000
+Serverless APIs dynamically scale depending on the number of requests, high availability during traffic spikes, and helps to prevent resource usage during low demand.
+
+04:31.000 --> 04:38.000
+The cost is greatly reduced since you are built only on the actual utilization and not idle time.
+
+04:38.000 --> 04:41.000
+So what are Lambda functions then?
+
+04:41.000 --> 04:49.000
+Lambda function is a serverless service that runs code in response to events such as API requests.
+
+04:49.000 --> 04:54.000
+Each function is designed to handle a specific task such as a CRUD operation.
+
+04:54.000 --> 04:59.000
+In the API, this would be post, get, put, or patch, and delete.
+
+04:59.000 --> 05:04.000
+Lambda functions have high integrations with other backend services like DynamoDB and S3.
+
+05:04.000 --> 05:12.000
+And if you wanted to create a front-end and back-end website, you would first deploy the Lambda function and configure API gateway routes.
+
+05:12.000 --> 05:14.000
+Then you would use S3 for hosting the front-end.
+
+05:14.000 --> 05:18.000
+And third, you could use CORS to enable communication between front and back-ends.
+
+05:18.000 --> 05:24.000
+And lastly, you'd want to make sure you secure your API endpoints with authentication.
+
+05:24.000 --> 05:25.000
+How does the gateway work?
+
+05:25.000 --> 05:26.000
+Well, here's an example.
+
+05:26.000 --> 05:30.000
+So users would connect to the API gateway, and then it would connect to the backend.
+
+05:30.000 --> 05:33.000
+The backend would grab the data and bring it back to the user.
+
+05:33.000 --> 05:40.000
+Alternatively, internal developers can access the backend directly to manage anything that they need to.
+
+05:40.000 --> 05:44.000
+Now we'll talk about MongoDB versus DynamoDB.
+
+05:44.000 --> 05:48.000
+So MongoDB has a very flexible document-based schema.
+
+05:48.000 --> 05:52.000
+It uses a JSON-like BSON format.
+
+05:52.000 --> 05:58.000
+It allows for rich querying capabilities like geospatial queries, indexing, and text search.
+
+05:58.000 --> 06:05.000
+This also allows for the filtering, sorting, and aggregation operations.
+
+06:05.000 --> 06:07.000
+It uses a multi-table structure.
+
+06:07.000 --> 06:13.000
+DynamoDB uses single-table structure, and it's optimized for fast key value and document-based storage.
+
+06:13.000 --> 06:18.000
+It's limited to secondary indexes for querying as well.
+
+06:18.000 --> 06:22.000
+Here's an example of what a DynamoDB table looks like.
+
+06:22.000 --> 06:25.000
+As you can see, it is just one singular table.
+
+06:25.000 --> 06:31.000
+All of the data is sorted via this primary key and the sorting key right here.
+
+06:31.000 --> 06:34.000
+This is an example of the MongoDB table.
+
+06:34.000 --> 06:38.000
+As you can see, they're all connected via holding each other's IDs.
+
+06:38.000 --> 06:43.000
+As you can see, the customer ID right here is held in the orders customer ID field.
+
+06:43.000 --> 06:46.000
+All right, cloud-based development principles.
+
+06:46.000 --> 06:48.000
+Well, elasticity is a very big part of cloud.
+
+06:48.000 --> 06:55.000
+This is where the cloud will scale up and down depending on the actual utilization.
+
+06:55.000 --> 06:59.000
+And this brings us to our next topic, so pay-for-use model.
+
+06:59.000 --> 07:05.000
+As you can see right here, in a cloud environment, you only pay for what you use.
+
+07:05.000 --> 07:08.000
+As you can see, your consumption right here, you only pay for what you use.
+
+07:08.000 --> 07:16.000
+In a VM, you pay for a capacity, which means that all of this red is wasted usage that you're paying for.
+
+07:16.000 --> 07:18.000
+So what is autoscaling?
+
+07:18.000 --> 07:24.000
+Autoscaling is something that helps us to achieve the build consumption on this side.
+
+07:24.000 --> 07:32.000
+Users will connect to our website via the internet, where it will use a load balancer to scale up and down depending on demand.
+
+07:32.000 --> 07:35.000
+Next, we'll talk about securing the cloud application.
+
+07:35.000 --> 07:40.000
+So this is done through three main different ways, roles, policies, and API security.
+
+07:40.000 --> 07:41.000
+So how do we prevent access?
+
+07:41.000 --> 07:48.000
+So IAM roles and policies are used for granting permission for accessing cloud resources.
+
+07:48.000 --> 07:54.000
+Policies are attached to roles that specify what actions are denied on a particular resource.
+
+07:54.000 --> 08:00.000
+IAM is beneficial for developers since it gives an easy and centralized way to manage permissions,
+
+08:00.000 --> 08:07.000
+enabling multi-factor authentication means users are required to identify themselves through two or more factors.
+
+08:07.000 --> 08:12.000
+This usually consists of something they know like a password and something they have a code from an authenticator app.
+
+08:12.000 --> 08:17.000
+This is important because it mitigates the risk of credentials becoming compromised.
+
+08:17.000 --> 08:24.000
+Finally, applying least privileged principles means granting users and services the minimum permissions needed to perform the tasks.
+
+08:24.000 --> 08:30.000
+The advantage of this is to reduce the surface for attack by limiting access to resources.
+
+08:30.000 --> 08:35.000
+Additionally, this also mitigates the accidental or malicious misuse of privileges.
+
+08:35.000 --> 08:42.000
+Luckily, AWS has a tool called AWS IAM access analyzer to identify any overly permissive rules.
+
+08:42.000 --> 08:47.000
+Roles act as a container for permissions, as we mentioned earlier.
+
+08:48.000 --> 08:54.000
+Custom policies are another way to define permissions in AWS.
+
+08:54.000 --> 09:00.000
+While we didn't get to actually define them ourselves, Amazon provided them in the lab role right here.
+
+09:00.000 --> 09:08.000
+These policies that are attached to our role allowed us to read our CRUD commands on our Dynamo database through our Lambda functions.
+
+09:08.000 --> 09:14.000
+Finally, through API security, in order to secure the API with Lambda,
+
+09:14.000 --> 09:19.000
+you can enable TLS, IAM authorizers, and restrict private access.
+
+09:19.000 --> 09:34.000
+With connection between the Lambda and the database, you can opt for encrypting data transit using SSL and TLS, IAM, and using principle or least privilege, like I mentioned before.
+
+09:34.000 --> 09:41.000
+Finally, securing your cloud with connection between Lambda and S3 through bucket security policies like the one that we see right here.
+
+09:41.000 --> 09:45.000
+IAM role permissions and encrypting data.
+
+09:45.000 --> 09:50.000
+Thank you for watching. I hope everything made sense to you.
+
+09:50.000 --> 10:02.000
+We have gone over the containerization orchestration using Docker, using Docker Compose, the serverless cloud, Lambda functions, the S3 storage.
+
+10:02.000 --> 10:10.000
+We talked about the serverless API, and we also talked about DynamoDB and how it compares to MongoDB.
+
+10:10.000 --> 10:19.000
+We talked about the cloud-based development cycles, so pay for use and elasticity, and how to secure your cloud.
+
+10:19.000 --> 10:22.000
+I hope all of this makes sense and helps you. Thank you.
+

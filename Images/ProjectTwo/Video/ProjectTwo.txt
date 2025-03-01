@@ -1,0 +1,115 @@
+Hello everyone, my name is Jesse Peterson and this is my CS470 Project 2 conference presentation.
+So getting on with it, we have our agenda here is going to be talking about containerization orchestration,
+the serverless cloud, cloud-based development principles in securing your cloud application.
+So first, containerization and orchestration, the models we used.
+So we used the re-platforming model where we integrated Lambda functions, DynamoDB, and the API gateway.
+So on the other hand, there's lift and shift, which is where you will package a container in a Docker container
+and you will lift it into the cloud. This is usually done on legacy applications where refactoring is useless.
+So re-platforming is where you slightly modify in order to take advantage of cloud managed services,
+for example, like our MongoDB and DynamoDB database.
+And refactoring is a much more extensive approach where the application is redesigned.
+This is usually to adopt the microservice architecture where the entire thing is broken down to take full utilization of the cloud.
+So the tools used, we used two different tools here. We used Docker and Docker Compose.
+Docker helps to package applications with their dependencies and containers.
+One key feature is Docker's ability to build, ship, and run applications in isolated environments.
+This allows us to keep our dependencies from interacting with the host machine's dependencies,
+getting rid of the it works on my machine, but it doesn't work on yours issue.
+So we also use Docker Compose, which is a Docker tool.
+It allows us to manage multi-container Docker applications.
+This is all done through a single Docker Compose file.
+So why should we use Docker Compose?
+Well, it simplifies the multi-container applications via a single YAML file.
+It's also nice for testing applications that use multiple services.
+Like in our case, we use MongoDB to communicate with ours.
+And it's also very portable and reproducible.
+You can upload your Compose file to a GitHub repo so your other developers can pull it.
+And it also runs on Windows, Mac OS, and Linux platforms so you can develop across any platform you prefer.
+So what's the serverless cloud?
+So the serverless cloud allows, has the advantage of allowing developers to write and deploy code
+without worrying about managing their underlying infrastructure.
+Developers, this also creates faster development life cycles.
+This is mostly due to the elimination of the need for infrastructure setup.
+Serverless applications dynamically scale up and down depending on demand.
+And they reduce operational overhead since there is no need to manage or maintain physical service operating systems or containers, clusters.
+So what is S3 storage then?
+So S3 storage, or a simplified storage service, is a cloud-based object storage service that is designed for scalability, durability, and accessibility.
+S3 is a managed service where AWS handles infrastructure and everything.
+With a significant amount of AWS data centers, this allows your data to be replicated to other regions, making it highly available and accessible.
+On the other hand, local storage is limited to physical hardware, whereas cloud storage is not limited unless it's the price of the storage.
+Finally, as mentioned earlier, local storage has no built-in remote accessibility.
+Having an engineer come in to open your network up can lead to some vulnerabilities.
+This is an example of what serverless looks like.
+A user would connect to the API.
+The API would route to a Lambda function.
+The Lambda function would grab the data that it needs from the database, and then it would bring it back to the user.
+This would scale up and down through this elastic hash model, depending on how many people are accessing the data.
+So going on to the serverless API.
+When using a serverless API, there is no server management required.
+This enables developers to focus on writing and deploying an application without worrying about configuration of the network.
+Serverless APIs dynamically scale depending on the number of requests, high availability during traffic spikes, and helps to prevent resource usage during low demand.
+The cost is greatly reduced since you are built only on the actual utilization and not idle time.
+So what are Lambda functions then?
+Lambda function is a serverless service that runs code in response to events such as API requests.
+Each function is designed to handle a specific task such as a CRUD operation.
+In the API, this would be post, get, put, or patch, and delete.
+Lambda functions have high integrations with other backend services like DynamoDB and S3.
+And if you wanted to create a front-end and back-end website, you would first deploy the Lambda function and configure API gateway routes.
+Then you would use S3 for hosting the front-end.
+And third, you could use CORS to enable communication between front and back-ends.
+And lastly, you'd want to make sure you secure your API endpoints with authentication.
+How does the gateway work?
+Well, here's an example.
+So users would connect to the API gateway, and then it would connect to the backend.
+The backend would grab the data and bring it back to the user.
+Alternatively, internal developers can access the backend directly to manage anything that they need to.
+Now we'll talk about MongoDB versus DynamoDB.
+So MongoDB has a very flexible document-based schema.
+It uses a JSON-like BSON format.
+It allows for rich querying capabilities like geospatial queries, indexing, and text search.
+This also allows for the filtering, sorting, and aggregation operations.
+It uses a multi-table structure.
+DynamoDB uses single-table structure, and it's optimized for fast key value and document-based storage.
+It's limited to secondary indexes for querying as well.
+Here's an example of what a DynamoDB table looks like.
+As you can see, it is just one singular table.
+All of the data is sorted via this primary key and the sorting key right here.
+This is an example of the MongoDB table.
+As you can see, they're all connected via holding each other's IDs.
+As you can see, the customer ID right here is held in the orders customer ID field.
+All right, cloud-based development principles.
+Well, elasticity is a very big part of cloud.
+This is where the cloud will scale up and down depending on the actual utilization.
+And this brings us to our next topic, so pay-for-use model.
+As you can see right here, in a cloud environment, you only pay for what you use.
+As you can see, your consumption right here, you only pay for what you use.
+In a VM, you pay for a capacity, which means that all of this red is wasted usage that you're paying for.
+So what is autoscaling?
+Autoscaling is something that helps us to achieve the build consumption on this side.
+Users will connect to our website via the internet, where it will use a load balancer to scale up and down depending on demand.
+Next, we'll talk about securing the cloud application.
+So this is done through three main different ways, roles, policies, and API security.
+So how do we prevent access?
+So IAM roles and policies are used for granting permission for accessing cloud resources.
+Policies are attached to roles that specify what actions are denied on a particular resource.
+IAM is beneficial for developers since it gives an easy and centralized way to manage permissions,
+enabling multi-factor authentication means users are required to identify themselves through two or more factors.
+This usually consists of something they know like a password and something they have a code from an authenticator app.
+This is important because it mitigates the risk of credentials becoming compromised.
+Finally, applying least privileged principles means granting users and services the minimum permissions needed to perform the tasks.
+The advantage of this is to reduce the surface for attack by limiting access to resources.
+Additionally, this also mitigates the accidental or malicious misuse of privileges.
+Luckily, AWS has a tool called AWS IAM access analyzer to identify any overly permissive rules.
+Roles act as a container for permissions, as we mentioned earlier.
+Custom policies are another way to define permissions in AWS.
+While we didn't get to actually define them ourselves, Amazon provided them in the lab role right here.
+These policies that are attached to our role allowed us to read our CRUD commands on our Dynamo database through our Lambda functions.
+Finally, through API security, in order to secure the API with Lambda,
+you can enable TLS, IAM authorizers, and restrict private access.
+With connection between the Lambda and the database, you can opt for encrypting data transit using SSL and TLS, IAM, and using principle or least privilege, like I mentioned before.
+Finally, securing your cloud with connection between Lambda and S3 through bucket security policies like the one that we see right here.
+IAM role permissions and encrypting data.
+Thank you for watching. I hope everything made sense to you.
+We have gone over the containerization orchestration using Docker, using Docker Compose, the serverless cloud, Lambda functions, the S3 storage.
+We talked about the serverless API, and we also talked about DynamoDB and how it compares to MongoDB.
+We talked about the cloud-based development cycles, so pay for use and elasticity, and how to secure your cloud.
+I hope all of this makes sense and helps you. Thank you.
